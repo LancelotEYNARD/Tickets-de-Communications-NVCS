@@ -1,0 +1,257 @@
+@font-face
+{
+	font-family: "Squared Display";
+	src: url("Squared Display.ttf");
+}
+@font-face
+{
+	font-family: "MODENINE";
+	src: url("MODENINE.TTF");
+}
+
+
+
+/*   FOND D'ECRAN GRIS SUR LE SYSTEME    */
+body
+{
+	background-color:#303030;
+	height: 100%;
+}
+/*   "TICKET DE COMMUNICATIONS"     */
+h1
+{
+	font-size: 40px;
+	color:  darkslategrey;
+	font-family: "MODENINE";
+	padding-left: 20px;
+	position:  relative;
+	top:  -20px;
+}
+/*   "NVCS"     */
+h2
+{
+	font-family: "Squared Display";
+	color: white;
+	font-size: 40px;
+	padding-left: 70px;
+	position: relative;
+	top:  -70px;
+}
+/*   "MAIN TELEPHONE"     */
+h3
+{
+    font-family: "MODENINE";
+	color: white;
+	font-size: 15px;
+	margin-left: 25px;
+	position: relative;
+	top: -25px;
+	height: 0px;
+}
+
+/*   CONTIENT LE TITRE DU PROGRAMME     */
+header
+{
+	background-color: #151515;
+	border:  3px slategray solid;
+	height: 90px
+}
+/*   SECTION POUR DIFFERENCIER LES DIFFERENTS FORMULAIRES     */
+section
+{
+	background-color: #454545;
+	border:  3px slategray solid;
+	position:  relative;
+	top: -3px;
+	width: 320px;
+	height: calc(100vh - 155px);
+}
+
+
+/*   LES FORMULAIRES    */
+article
+{
+	font-family: "MODENINE";
+	font-size: small;
+	color: darkgrey;
+	background-color: #454545;
+	padding-left: 15px;
+}
+/* LES LIENS */
+a
+{
+	font-style: oblique;
+	text-decoration: none;
+	color:  steelblue;
+}
+a:hover
+{
+	color: lightblue;
+}
+
+v
+/* DANS LES FORMULAIRE */
+legend
+{
+	font-size: 1.4em;
+}
+fieldset
+{
+	border-color: #303030;
+	margin-bottom: 5px;
+}
+/* PARTIE SCROLLABLE DU FORMULAIRE DE GAUCHE */
+.scrollable
+{
+    background-color: #353535;
+	overflow-y: scroll;
+	height: calc(100vh - 340px);
+	position: block;
+	padding-top: -35px;
+	padding-bottom:0px;
+	margin-bottom: 0px;
+}
+#rechercher
+{
+    position: absolute;
+    top: 130px;
+    left: 170px;
+    margin-bottom: 0px
+}
+/* METTRE A L'HORIZONTAL */
+.page_principale
+{
+	display:  flex;
+}
+
+.bloc_logique
+{
+	margin-top: 10px;
+	margin-bottom: 2px;
+	padding-left: 3px;
+	width: 240px;
+	border: 1px solid slategray;
+}
+/* BOUTTON */
+.submit-form
+{
+    margin-bottom: 15px;
+    margin-left: 20px;
+}
+/* BLOC AFFICHAGE DES TICKETS */
+#resultat
+{
+    background-color: #303030;
+	border:  0px slategray solid;
+	position:  relative;
+	top: 0px;
+	width: 80%;
+	height: calc(100vh - 155px);
+	overflow-y: scroll;
+}
+/* LES TICKETS DANS LE BLOC AU DESSUS */
+.ticket
+{
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-left:5px;
+    margin-top:10px;
+    margin-left:20px;
+    margin-right:60px;
+    border: 2px  #4A235A  solid;
+    background-color:  #7D3C98;
+    font-family: "MODENINE";
+	font-size: small;
+	color: white;
+	max-height: 75px;
+	overflow: clip;
+}
+/* ON DIFFERENCIE LA VALEUR ET LE NOM DE L'ATTRIBUT POUR L'AFFICHAGE */
+.ticket .valAttr
+{
+    color: #EEA2FF;
+}
+.ticket .valRch
+{
+    color: #57FF56;
+    font-weight: bolder;
+}
+.petite_zone_txt
+{
+    max-width: 45px;
+}
+
+/*   POUR AFFICHER UN TEXTE A LA PLACE DES TICKETS QUAND RIEN NEST TROUVE    */
+#recherche_vide
+{
+    font-family: "MODENINE";
+	font-size: xx-large;
+	color: grey;
+	position: fixed;
+    top: calc(50vh - 60px);
+    right: calc(50% + 60px - 320px);
+}
+
+/*   LE FOOTER QUI EST TOUJOURS EN BAS DE LA PAGE     */
+footer
+{
+    display:  flex;
+	background-color: #454545;
+	border:  3px slategray solid;
+    padding-left: 20px;
+    padding-top:5px;
+    padding-bottom: 5px;
+    margin-right: 5px;
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    left: 8px;
+}
+
+/*   DANS LE FOOTER AFFICHE LE NOMBRE DE COMM     */
+#nbcomm
+{
+    margin-left: 300px;
+    font-family: "MODENINE";
+	font-size: large;
+	color: white;
+}
+
+#loader
+{
+    position: fixed;
+    top: calc(50vh - 60px);
+    right: calc(50% + 60px - 320px);
+    border: 8px solid darkgrey;
+    border-top: 8px solid #7D3C98;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    visibility = hidden;
+    z-index: 100;
+}
+
+@keyframes spin
+{
+    0% {transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+label span
+{
+    position: absolute;
+    margin-left: 130px;
+    color: white;
+    background: rgba(100,100,100,255);
+    padding: 7px;
+    border-radius: 2px;
+    box-shadow: 0 0 2px rgba(45,45,45,0.5);
+    transform:scale(0) rotate(-12deg);
+    transition: all .25s;
+}
+label:hover span, label:focus span
+{
+    transform:scale(1) rotate(0);
+}

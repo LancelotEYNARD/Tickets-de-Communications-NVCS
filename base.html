@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+
+    <head>
+
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../static/style.css" />
+        <title>Tickets de Comm</title>
+
+    </head>
+    <body>
+        <header>
+            <h1>TICKETS DE COMMUNICATIONS</h1>
+            <h2>NVCS</h2>
+            <div id="loader" ></div>
+        </header>
+        <div class="page_principale">
+            <section>
+                <article class="recherche">
+                    <form action="/set-form" method="POST">
+                        <fieldset>
+                            <legend>Systeme</legend>
+                            <label>Main</label><input type="radio" name="systeme" id="main" value="MAIN" required>
+                            <label>Backup</label><input type="radio" name="systeme" id="Backup" value="BACKUP" required>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Categorie</legend>
+                            <label>Telephone</label><input type="radio" name="category" id="telephone" value="TELEPHONE" required>
+                            <label>Radio</label><input type="radio" name="category" id="radio" value="RADIO" required>
+                        </fieldset>
+                        <input type="submit" value="Suivant" class="submit-form"/>
+                    </form>
+                    {% block specific_form %} {% endblock %}
+                </article>
+            </section>
+
+            {% block resultat_recherche %} {% endblock %}
+
+        </div>
+
+    <script>
+        function loading() {
+            document.getElementById("loader").style.visibility = "visible";
+            }
+    </script>
+    <script>
+        window.onload = function loaded() {
+            document.getElementById("loader").style.visibility = "hidden";
+            }
+    </script>
+    <script>
+        function extend(id) {
+            var x = document.getElementById(id);
+            if(x.style.maxHeight == "500px") {
+                x.setAttribute("style","max-height:75px");
+            }
+            else {
+                x.setAttribute("style","max-height:500px");
+            }
+        }
+    </script>
+    </body>
+    {% block footer %} {% endblock %}
+</html>

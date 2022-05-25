@@ -1,0 +1,33 @@
+{% extends "form_main_tel.html" %}
+
+{% block resultat_recherche %}
+<section id="resultat">
+    {% for ticket in tickets %}
+    <div class="ticket" onclick="extend('{{tickets.index(ticket)}}');" id="{{tickets.index(ticket)}}">
+        <span>MAIN</span><br/>
+        <span>{{ ticket.category }}</span><br/>
+        <span>DATE/HEURE:</span><span class="valAttr"> {{ ticket.get_date_time() }} </span><br/>
+        <span>NUM ORIGINE:</span><span class="valAttr"> {{ ticket.origin_number }} &emsp;&emsp;</span><span>NUM DESTINATION: </span><span class="valAttr">{{ ticket.destination_number }}</span><br/>
+        {% for critere, valeur in criteres.items() %}
+            <span>{{ aff_critere[critere]|string }}:</span><span class="valRch"> {{ getattr(ticket,critere)|string }} &emsp;&emsp;</span>
+        {% endfor %}
+        <br/><br/><br/>
+        <span>NOM DE PO:</span><span class="valAttr"> {{ ticket.physical_name }}</span><span> &emsp;&emsp;MISSION: </span><span class="valAttr">{{ ticket.mission_name }}</span><br/>
+        <span>PIORITE:</span><span class="valAttr"> {{ ticket.priority }}</span><span> &emsp;&emsp;END CAUSE: </span><span class="valAttr">{{ ticket.end_cause }}&emsp;&emsp; </span><span>DIRECTION DE L'APPEL: </span><span class="valAttr">{{ ticket.call_type_direction }}</span><br/>
+        <span>DEBUT EXACT DE L'APPEL:</span><span class="valAttr"> {{ ticket.call_start_date_time }}</span><span> &emsp;&emsp;DUREE DE L'APPEL: </span><span class="valAttr">{{ ticket.call_duration }}</span><br/>
+        <span>NOMBRE DE RE-TENTATIVES: </span><span class="valAttr"> {{ ticket.number_of_retries }} </span><span>SIP POOL LEVEL: </span><span class="valAttr"> {{ ticket.sip_pool_level }} &emsp;</span><span>LINE INTERFACE NAME: </span><span class="valAttr"> {{ ticket.line_interface_name }} </span>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}
+{% block footer %}
+<footer>
+    <form action="/ticket.pdf" method="POST">
+        <input type="hidden" value="{{pdf}}" name="pdf">
+        <button type="submit">Imprimer en PDF</button>
+    </form>
+    <div id="nbcomm">
+        Nombres de communications trouvees : {{len(tickets)}}
+    </div>
+</footer>
+{% endblock %}

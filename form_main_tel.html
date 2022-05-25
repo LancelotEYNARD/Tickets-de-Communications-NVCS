@@ -1,0 +1,74 @@
+{% extends "base.html"%}
+
+
+{% block specific_form %}
+<h3>MAIN TELEPHONE</h3>
+
+<form method="post" action="/recherche-main-tel" onsubmit="loading()">
+    <div class ="scrollable">
+    <fieldset>
+        <legend>Intervalle de Recherche</legend>
+        <label>Date début:&nbsp;&nbsp;</label><input type="date" name="date_debut" required value="{{date_ajd}}"/><br/>
+        <label>Heure début:&nbsp;</label><input type="time" name="temps_debut"required value="00:00"/><br/>
+        <label>Date fin:&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="date" name="date_fin"required value="{{date_ajd}}"/><br/>
+        <label>Heure fin:&nbsp;&nbsp;&nbsp;</label><input type="time" name="temps_fin"required value="23:59"/><br/>
+    </fieldset>
+    <fieldset>
+        <legend>Correspondants</legend>
+        <label>Nom de PO: </label>
+            <input list="liste_po" id="physical_name" name="physical_name" pattern="{{ listePO|join('|') }}" autocomplete="off">
+            <datalist id="liste_po">
+                {% for PO in listePO %}
+                <option value="{{PO}}"> </option>
+                {% endfor %}
+            </datalist>
+        <label>Mission: &emsp;&nbsp;</label>
+            <input list="liste_mission" id="mission_name" name="mission_name" pattern="{{ listeMissions|join('|') }}" autocomplete="off">
+            <datalist id="liste_mission">
+                {% for mission in listeMissions %}
+                <option value="{{mission}}"> </option>
+                {% endfor %}
+            </datalist>
+    </fieldset>
+    <fieldset>
+        <legend>Type d'appel</legend>
+        <label><span>Appel entrant</span>INCALL</label><input type="radio" name="call_type_direction" id="incall" value="INCALL" >
+        <label><span>Appel sortant</span>OUTCALL</label><input type="radio" name="call_type_direction" id="outcall" value="OUTCALL"><br/>
+        <label><span>Appel transféré</span>TRANSFER</label><input type="radio" name="call_type_transfer" id="TRANSFER" value="TRANSFER" >
+        <label><span>Appel non transféré</span>NOT_TRANSFER</label><input type="radio" name="call_type_transfer" id="NOT_TRANSFER" value="NOT_TRANSFER"></br>
+        <label><span>Appel redirigé (automatiquement)</span>CALLFWD</label><input type="radio" name="call_type_callfwd" id="CALLFWD" value="CALLFWD" >
+        <label><span>Appel non redirigé (automatiquement)</span>NOT_CALLFWD</label><input type="radio" name="call_type_callfwd" id="NOT_CALLFWD" value="NOT_CALLFWD">
+    </fieldset>
+    <fieldset>
+        <legend>Duree de l'appel</legend>
+        <label>Duree MIN:&nbsp; </label><input type="number" name="duree_min_m" min="0" max="59" class="petite_zone_txt"/>min </label><input type="number" min="0" max="59" name="duree_min_s" class="petite_zone_txt"/>sec<br/>
+        <label>Duree MAX:&nbsp; </label><input type="number" name="duree_max_m" min="0" max="59" class="petite_zone_txt"/>min </label><input type="number" min="0" max="59" name="duree_max_s" class="petite_zone_txt"/>sec<br/>
+    </fieldset>
+    <fieldset>
+        <legend>Specificites</legend>
+        <label><span>Appel Prioritaire</span>Priorite </label><input type="radio" name="priority" value="3">OUI <input type="radio" name="priority" value="4">NON<br/>
+        <label><span>Y-a t'il eu plusieurs tentatives de connexions ?</span>Plusieurs tentatives </label><input type="checkbox" name="number_of_retries"/><br/>
+        <label>
+            <span>Cause de fin d'appel</span>
+            End Cause
+        </label><select name="end_cause">
+            <option selected value="">Selectionner</option>
+            <option value="END_BY_INTERNAL_USER">END_BY_INTERNAL_USER</option>
+            <option value="END_BY_PRIO">END_BY_PRIO</option>
+            <option value="END_BY_TMCS">END_BY_TMCS</option>
+            <option value="END_BY_TRK_BUSY">END_BY_TRK_BUSY</option>
+            <option value="END_BY_BUSY">END_BY_BUSY</option>
+            <option value="END_BY_OOS">END_BY_OOS</option>
+            <option value="END_BY_ERROR">END_BY_ERROR</option>
+            <option value="END_BY_PERM">END_BY_PERM</option>
+            <option value="END_BY_BLOCKING">END_BY_BLOCKING</option>
+            <option value="END_BY_REJECT">END_BY_REJECT</option>
+            <option value="END_BY_TRANSFER">END_BY_TRANSFER</option>
+            <option value="END_BY_EXTERNAL_USER">END_BY_EXTERNAL_USER</option>
+            <option value="END_BY_UNKNOWN_CAUSE">END_BY_UNKNOWN_CAUSE</option>
+        </select>
+    </fieldset>
+    </div>
+    <input type="submit" value="Rechercher" class="submit-form" id="rechercher"/>
+</form>
+{% endblock %}
